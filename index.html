@@ -1,25 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Rock Paper Scissors Game</title>
 </head>
-<body>
 
+<body>
     <div class="container">
         <h1>Rock Paper Scissors</h1>
-        <div class="game">
-            <button id="rock"><img src="img/rocks.png" alt="Rock"></button>
-            <button id="paper"><img src="img/paper.png" alt="Paper"></button>
-            <button id="scissors"><img src="img/scissors.png" alt="Scissors"></button>
-        </div>
-        <div class="result">
-            <p id="result-text">Choose an option to start the game!</p>
-        </div>
-    </div>
+        <div class="mainbox">
+            <div class="textbox"> "Welcome to the Rock, Paper, Scissors game. The game consists of 5 rounds. For each
+                round, click on the selection below. The computer will choose randomly. The scores are updated at the
+                bottom, and the winner is displayed at the end."
+            </div>
+            <div class="selections">
+                <img src="img/rocks.png" alt="Rock">
+                <img src="img/paper.png" alt="Paper">
+                <img src="img/scissors.png" alt="Scissors">
+            </div>
+            <div class="comments">
+            </div>
+        
+<div class="scores">
+ <div class="box">
+                  <p>Player score: 0</p>
+                </div>
+                
+<div class="box">
+                  <p>Computer score: 0</p>
+                </div>
+              </div>
+
+<div class="finalMessage">
+    <p>Congrats</p>
+</div>
+        
+        </div>  <!-- mainbox -->
+    </div> <!-- container -->
+
+
+
+
+
+
 
     <script src="myScript.js"></script>
 </body>
+
 </html>
