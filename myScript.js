@@ -1,5 +1,10 @@
-// function for computer choices
+// defining global variables
 const choices = ['rock', 'paper', 'scissors'];
+var playerScore = 0;
+var computerScore = 0;
+var roundCouter = 0;
+
+// function for computer choices
 function getComputerChoice() {
     const randomIndex = Math.floor(Math.random() *  3);
     return choices[randomIndex];
@@ -7,8 +12,6 @@ function getComputerChoice() {
 
 // play single round
 function playRound(playerSelection, computerSelection) {
-    // Make playerSelection case-insensitive
-    playerSelection = playerSelection.toLowerCase();
 
     // Check for a tie and get a new computer choice if needed
     while (playerSelection === computerSelection.toLowerCase()) {
@@ -21,11 +24,27 @@ function playRound(playerSelection, computerSelection) {
         (playerSelection === 'paper' && computerSelection === 'rock') ||
         (playerSelection === 'scissors' && computerSelection === 'paper')
     ) {
-        return `You Win! ${playerSelection} beats ${computerSelection}`;
+        playerScore++;
     } else {
-        return `You Lose! ${computerSelection} beats ${playerSelection}`;
+        computerScore++;
     }
 }
+
+// getting user clicks
+var allSelections = document.querySelectorAll(".selections > *");
+
+allSelections.forEach((selection) => {
+  // and for each one we add a 'click' listener
+  selection.addEventListener('click', () => {
+    playerSelection = selection.id;
+  });
+});
+
+// updating scores
+
+
+
+
 
 // game
 function game() {
@@ -63,12 +82,3 @@ function game() {
     }
 }
 
-// Example usage:
-game();
-
-// Example usage:
-// const playerChoice = 'Rock';  // You can input any variation here
-// const computerChoice = getComputerChoice();
-
-// const result = playRound(playerChoice, computerChoice);
-// console.log(result);

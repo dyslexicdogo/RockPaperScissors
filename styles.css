@@ -81,3 +81,19 @@ h1{
     font-size: 20px;
     margin-top: 10px;
 }
+
+.btn {
+    color: white;
+    padding: .50rem 2rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.btn-beginner{
+    background-color: #4CAF50;
+}
+.btn-beginner:hover {
+    background-color: #60c365;
+}
