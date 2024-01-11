@@ -3,6 +3,8 @@ const choices = ['rock', 'paper', 'scissors'];
 var playerScore = 0;
 var computerScore = 0;
 var roundCouter = 0;
+var liveComments = document.querySelector(".comments");
+
 
 // function for computer choices
 function getComputerChoice() {
@@ -11,8 +13,9 @@ function getComputerChoice() {
 }
 
 // play single round
-function playRound(playerSelection, computerSelection) {
-
+function playRound(playerSelection) {
+    
+    var computerSelection = getComputerChoice();
     // Check for a tie and get a new computer choice if needed
     while (playerSelection === computerSelection.toLowerCase()) {
         computerSelection = getComputerChoice();
@@ -25,8 +28,10 @@ function playRound(playerSelection, computerSelection) {
         (playerSelection === 'scissors' && computerSelection === 'paper')
     ) {
         playerScore++;
+        liveComments.textContent = `Player chose ${playerSelection}. Computer chose ${computerSelection}. The player wins this time.`;
     } else {
         computerScore++;
+        liveComments.textContent = `Player chose ${playerSelection}. Computer chose ${computerSelection}. The computer wins this time.`;
     }
 }
 
@@ -37,6 +42,7 @@ allSelections.forEach((selection) => {
   // and for each one we add a 'click' listener
   selection.addEventListener('click', () => {
     playerSelection = selection.id;
+    playRound(playerSelection);
   });
 });
 
