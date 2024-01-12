@@ -5,6 +5,11 @@ var computerScore = 0;
 var roundCouter = 0;
 var liveComments = document.querySelector(".comments");
 
+// text updater
+function updateFields() {
+    return 0;
+}
+
 
 // function for computer choices
 function getComputerChoice() {
