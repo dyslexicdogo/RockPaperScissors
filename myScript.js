@@ -8,28 +8,59 @@ var playerScorecard = document.querySelector("#playerScorecard");
 var computerScorecard = document.querySelector("#computerScorecard");
 var finalMessage = document.querySelector(".finalMessage");
 
-// function for computer choices
-function getComputerChoice() {
-    const randomIndex = Math.floor(Math.random() *  3);
-    return choices[randomIndex];
+// adding animation to the image buttons
+function handleMouseDown() {
+  this.classList.add("button-press-animation");
+}
+function handleMouseUpOrLeave() {
+  this.classList.remove("button-press-animation");
 }
 
-// Play a single round
-function playRound(playerSelection) {
-    console.log(playerSelection);
+// defining click function 
+function handleClick() {
+  if (roundCouter < 5) {
+    // Update the comment text content
+    liveComments.textContent = `${roundCouter}`;
+    roundCouter++;
+  } else {
+    // Reset if the counter exceeds 5
+    liveComments.textContent = "Please reset to start a new game";
+  }
 }
 
-
-// getting user clicks
+//adding all these into the buttons 
 var allSelections = document.querySelectorAll(".selections > *");
-
-allSelections.forEach((selection) => {
-  // and for each one we add a 'click' listener
-  selection.addEventListener('click', () => {
-    playerSelection = selection.id;
-    playRound(playerSelection);
-  });
+allSelections.forEach(function (button) {
+  button.addEventListener("mousedown", handleMouseDown);
+  button.addEventListener("mouseup", handleMouseUpOrLeave);
+  button.addEventListener("mouseleave", handleMouseUpOrLeave);
+  button.addEventListener("click", handleClick);
 });
+
+/////////////////////////////////////////
+
+  // // function for computer choices
+  // function getComputerChoice() {
+  //     const randomIndex = Math.floor(Math.random() *  3);
+  //     return choices[randomIndex];
+  // }
+
+  // // Play a single round
+  // function playRound(playerSelection) {
+  //     console.log(playerSelection);
+  // }
+
+
+  // // getting user clicks
+  // var allSelections = document.querySelectorAll(".selections > *");
+
+  // allSelections.forEach((selection) => {
+  //   // and for each one we add a 'click' listener
+  //   selection.addEventListener('click', () => {
+  //     playerSelection = selection.id;
+  //     playRound(playerSelection);
+  //   });
+  // });
 
 
 

@@ -39,6 +39,11 @@ h1{
     cursor: pointer;
   }
 
+.button-press-animation {
+    transform: translateY(2px);
+  }
+
+
 .comments, .finalMessage {
     background-color: white;
     margin: 10px;
@@ -88,5 +93,5 @@ h1{
     background-color: #4CAF50;
 }
 .btn-beginner:hover {
-    background-color: #60c365;
+    background-color: #032705;
 }
