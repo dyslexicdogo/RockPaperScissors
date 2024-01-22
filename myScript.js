@@ -17,10 +17,10 @@ function handleMouseUpOrLeave() {
 }
 
 // defining click function 
-function handleClick() {
+function handleClick(event) {
   if (roundCouter < 5) {
-    // Update the comment text content
-    liveComments.textContent = `${roundCouter}`;
+    playerSelection = event.target.id;
+    playRound(playerSelection);
     roundCouter++;
   } else {
     // Reset if the counter exceeds 5
@@ -28,7 +28,7 @@ function handleClick() {
   }
 }
 
-//adding all these into the buttons 
+//adding all click actions into the buttons 
 var allSelections = document.querySelectorAll(".selections > *");
 allSelections.forEach(function (button) {
   button.addEventListener("mousedown", handleMouseDown);
@@ -37,18 +37,23 @@ allSelections.forEach(function (button) {
   button.addEventListener("click", handleClick);
 });
 
+// game function. Before that defining the random computer choice function
+  // function for computer choices
+  function getComputerChoice() {
+      const randomIndex = Math.floor(Math.random() *  3);
+      return choices[randomIndex];
+  }
+
+  // Play a single round
+  function playRound(playerSelection) {
+    liveComments.textContent = `Round: ${roundCouter + 1}. Player choose ${playerSelection}`;
+  }
+
 /////////////////////////////////////////
 
-  // // function for computer choices
-  // function getComputerChoice() {
-  //     const randomIndex = Math.floor(Math.random() *  3);
-  //     return choices[randomIndex];
-  // }
 
-  // // Play a single round
-  // function playRound(playerSelection) {
-  //     console.log(playerSelection);
-  // }
+
+
 
 
   // // getting user clicks
