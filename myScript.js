@@ -1,8 +1,9 @@
 // defining global variables
-const choices = ['rock', 'paper', 'scissors'];
+const choices = ["rock", "paper", "scissors"];
 var playerScore = 0;
 var computerScore = 0;
 var roundCouter = 0;
+var winner = "";
 var liveComments = document.querySelector(".comments");
 var playerScorecard = document.querySelector("#playerScorecard");
 var computerScorecard = document.querySelector("#computerScorecard");
@@ -16,7 +17,7 @@ function handleMouseUpOrLeave() {
   this.classList.remove("button-press-animation");
 }
 
-// defining click function 
+// defining click function
 function handleClick(event) {
   if (roundCouter < 5) {
     playerSelection = event.target.id;
@@ -28,7 +29,7 @@ function handleClick(event) {
   }
 }
 
-//adding all click actions into the buttons 
+//adding all click actions into the buttons
 var allSelections = document.querySelectorAll(".selections > *");
 allSelections.forEach(function (button) {
   button.addEventListener("mousedown", handleMouseDown);
@@ -38,39 +39,59 @@ allSelections.forEach(function (button) {
 });
 
 // game function. Before that defining the random computer choice function
-  // function for computer choices
-  function getComputerChoice() {
-      const randomIndex = Math.floor(Math.random() *  3);
-      return choices[randomIndex];
+// function for computer choices
+function getComputerChoice() {
+  const randomIndex = Math.floor(Math.random() * 3);
+  return choices[randomIndex];
+}
+
+// Defining RPS game. takes up two choices and updates the scores and update the winner variable
+function RPSGame(playerSelection, computerSelection) {
+  if (
+    (playerSelection === "rock" && computerSelection === "scissors") ||
+    (playerSelection === "paper" && computerSelection === "rock") ||
+    (playerSelection === "scissors" && computerSelection === "paper")
+  ) {
+    winner = "the player";
+    playerScore++;
+  } else {
+    winner = "the computer";
+    computerScore++;
+  }
+}
+
+// Play a single round
+function playRound(playerSelection) {
+  
+  var computerSelection = getComputerChoice();
+  // Check for a tie and get a new computer choice if needed
+  while (playerSelection === computerSelection.toLowerCase()) {
+    computerSelection = getComputerChoice();
   }
 
-  // Play a single round
-  function playRound(playerSelection) {
-    liveComments.textContent = `Round: ${roundCouter + 1}. Player choose ${playerSelection}`;
-  }
+  // determine who is the winner
+  RPSGame(playerSelection, computerSelection);
+
+  // updating the fields
+  liveComments.textContent = `Round: ${roundCouter + 1}. 
+  Player chose ${playerSelection}. Computer chose ${computerSelection}. The winner is ${winner}`;
+  
+}
 
 /////////////////////////////////////////
 
+// // getting user clicks
+// var allSelections = document.querySelectorAll(".selections > *");
 
-
-
-
-
-  // // getting user clicks
-  // var allSelections = document.querySelectorAll(".selections > *");
-
-  // allSelections.forEach((selection) => {
-  //   // and for each one we add a 'click' listener
-  //   selection.addEventListener('click', () => {
-  //     playerSelection = selection.id;
-  //     playRound(playerSelection);
-  //   });
-  // });
-
-
+// allSelections.forEach((selection) => {
+//   // and for each one we add a 'click' listener
+//   selection.addEventListener('click', () => {
+//     playerSelection = selection.id;
+//     playRound(playerSelection);
+//   });
+// });
 
 // //// Working till now
-
 
 // // text updater
 // function updateFields(playerSelection, computerSelection, winner) {
@@ -79,11 +100,9 @@ allSelections.forEach(function (button) {
 //     computerScorecard.textContent = `Player Score: ${computerScore}`;
 // }
 
-
-
 // // play single round
 // function playRound(playerSelection) {
-    
+
 //     var computerSelection = getComputerChoice();
 //     // Check for a tie and get a new computer choice if needed
 //     while (playerSelection === computerSelection.toLowerCase()) {
@@ -117,10 +136,6 @@ allSelections.forEach(function (button) {
 // });
 
 // // updating scores
-
-
-
-
 
 // // game
 // function game() {
@@ -157,4 +172,3 @@ allSelections.forEach(function (button) {
 //         console.log("The game is a tie.");
 //     }
 // }
-
