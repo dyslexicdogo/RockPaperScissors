@@ -17,7 +17,7 @@ function handleMouseUpOrLeave() {
   this.classList.remove("button-press-animation");
 }
 
-// defining click function
+// defining click function (Plays playRound function with track of counter)
 function handleClick(event) {
   if (roundCouter < 5) {
     playerSelection = event.target.id;
@@ -29,13 +29,13 @@ function handleClick(event) {
   }
 }
 
-//adding all click actions into the buttons
-var allSelections = document.querySelectorAll(".selections > *");
+// adding all click actions into the buttons
+var allSelections = document.querySelectorAll(".selections > *"); // selecting the buttons
 allSelections.forEach(function (button) {
-  button.addEventListener("mousedown", handleMouseDown);
+  button.addEventListener("mousedown", handleMouseDown);  // the first three are animation related
   button.addEventListener("mouseup", handleMouseUpOrLeave);
   button.addEventListener("mouseleave", handleMouseUpOrLeave);
-  button.addEventListener("click", handleClick);
+  button.addEventListener("click", handleClick); // this one is the click function
 });
 
 // game function. Before that defining the random computer choice function
@@ -65,7 +65,7 @@ function playRound(playerSelection) {
   
   var computerSelection = getComputerChoice();
   // Check for a tie and get a new computer choice if needed
-  while (playerSelection === computerSelection.toLowerCase()) {
+  while (playerSelection === computerSelection) {
     computerSelection = getComputerChoice();
   }
 
@@ -75,6 +75,8 @@ function playRound(playerSelection) {
   // updating the fields
   liveComments.textContent = `Round: ${roundCouter + 1}. 
   Player chose ${playerSelection}. Computer chose ${computerSelection}. The winner is ${winner}`;
+  playerScorecard.textContent = `Player score: ${playerScore}`;
+  computerScorecard.textContent = `Player score: ${computerScore}`;
   
 }
 
