@@ -90,8 +90,11 @@ function playRound(playerSelection) {
   else {
     finalMessage.textContent = ``;
   }
-  
 }
+
+// handeling the reset button
+
+
 
 /////////////////////////////////////////
 
