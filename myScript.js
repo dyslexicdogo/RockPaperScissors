@@ -17,7 +17,7 @@ function handleMouseUpOrLeave() {
   this.classList.remove("button-press-animation");
 }
 
-// defining click function (Plays playRound function with track of counter)
+// defining click function (Plays playRound function with track of counter. if the counter exceeds, resets to the scores)
 function handleClick(event) {
   if (roundCouter < 5) {
     playerSelection = event.target.id;
@@ -26,6 +26,8 @@ function handleClick(event) {
   } else {
     // Reset if the counter exceeds 5
     liveComments.textContent = "Please reset to start a new game";
+    playerScore = 0;
+    computerScore = 0;
   }
 }
 
@@ -45,7 +47,7 @@ function getComputerChoice() {
   return choices[randomIndex];
 }
 
-// Defining RPS game. takes up two choices and updates the scores and update the winner variable
+// Defining RPS logic. takes up two choices and updates the scores and update the winner variable
 function RPSGame(playerSelection, computerSelection) {
   if (
     (playerSelection === "rock" && computerSelection === "scissors") ||
@@ -76,7 +78,18 @@ function playRound(playerSelection) {
   liveComments.textContent = `Round: ${roundCouter + 1}. 
   Player chose ${playerSelection}. Computer chose ${computerSelection}. The winner is ${winner}`;
   playerScorecard.textContent = `Player score: ${playerScore}`;
-  computerScorecard.textContent = `Player score: ${computerScore}`;
+  computerScorecard.textContent = `Computer score: ${computerScore}`;
+  if (roundCouter == 4) {
+    if (playerScore > computerScore) {
+      finalMessage.textContent = `The player`;
+    }
+    else {
+    finalMessage.textContent = `The Computer`;
+    }
+  }
+  else {
+    finalMessage.textContent = ``;
+  }
   
 }
 
