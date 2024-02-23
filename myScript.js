@@ -81,10 +81,10 @@ function playRound(playerSelection) {
   computerScorecard.textContent = `Computer score: ${computerScore}`;
   if (roundCouter == 4) {
     if (playerScore > computerScore) {
-      finalMessage.textContent = `The player`;
+      finalMessage.textContent = `Congrats! The player won`;
     }
     else {
-    finalMessage.textContent = `The Computer`;
+    finalMessage.textContent = `Better luck next time. The Computer won`;
     }
   }
   else {
@@ -93,6 +93,18 @@ function playRound(playerSelection) {
 }
 
 // handeling the reset button
+function resetFunction() {
+  roundCouter = 0;
+  liveComments.textContent = ``;
+  playerScorecard.textContent = `Player score: 0`;
+  computerScorecard.textContent = `Computer score: 0`;
+  finalMessage.textContent = ``;
+}
+// Select the resetButton
+var resetButton = document.querySelector("#resetButton");
+
+// Link the resetFunction to the button's click event
+resetButton.addEventListener("click", resetFunction);
 
 
 
